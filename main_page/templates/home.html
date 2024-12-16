@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        p {
+            text-align: center;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-size: 18px;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        ul li a:hover {
+            background-color: #45a049;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Добро пожаловать в систему</h1>
+    <p>Выберите одно из действий:</p>
+    <ul>
+        <li><a href="{% url 'system:register_company' %}">Зарегистрировать компанию</a></li>
+        <li><a href="{% url 'system:register_manager' %}">Зарегистрироваться как менеджер</a></li>
+        <li><a href="{% url 'system:login' %}">Войти в систему</a></li>
+    </ul>
+</body>
+</html>

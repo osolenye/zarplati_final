@@ -41,6 +41,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = 'system.CustomUser'
+LOGIN_REDIRECT_URL = '/'  # Куда перенаправлять пользователя после входа
+LOGOUT_REDIRECT_URL = '/login/'  # Куда перенаправлять после выхода
 
 
 MIDDLEWARE = [
