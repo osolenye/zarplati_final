@@ -105,3 +105,28 @@ def view_payments(request):
 
     payments = Payment.objects.filter(worker__user__company=request.user.company)
     return render(request, 'view_payments.html', {'payments': payments})
+
+
+@login_required
+def general_info(request):
+    # Получаем компанию, к которой привязан пользователь (администратор или работник)
+    company = request.user.company
+
+    # Получаем информацию о компании
+    company_info = {
+        'name': company.name,
+        'employee_count': company.employee_count,
+    }
+
+    # Получаем все выплаты для работников этой компании, если пользователь - работник
+    payments = []
+    if not request.user.is_manager:  # Если не администратор
+        payments = Payment.objects.filter(worker__user=request.user)
+
+    context = {
+        'company_info': company_info,
+        'payments': payments,
+        'is_manager': request.user.is_manager,  # Проверяем, админ ли пользователь
+    }
+
+    return render(request, 'general_info.html', context)

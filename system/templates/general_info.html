@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Общая информация</title>
+</head>
+<body>
+    <h1>Общая информация о компании</h1>
+
+    <h2>Информация о компании</h2>
+    <p><strong>Название компании:</strong> {{ company_info.name }}</p>
+    <p><strong>Количество сотрудников:</strong> {{ company_info.employee_count }}</p>
+
+    {% if is_manager %}
+        <!-- Для администратора: Дополнительная информация, если нужно -->
+        <h2>информация для администратора</h2>
+    {% else %}
+        <!-- Для работника: Информация о выплатах -->
+        <h2>Мои выплаты</h2>
+        {% if payments %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Дата выплаты</th>
+                        <th>Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for payment in payments %}
+                        <tr>
+                            <td>{{ payment.date }}</td>
+                            <td>{{ payment.amount }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>У вас нет выплат.</p>
+        {% endif %}
+    {% endif %}
+
+</body>
+</html>
