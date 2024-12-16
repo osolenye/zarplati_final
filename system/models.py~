@@ -20,12 +20,3 @@ class WorkerProfile(models.Model):
     salary = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Зарплата")
     phone_number = models.CharField(max_length=20, verbose_name="Номер телефона")
     position = models.CharField(max_length=255, verbose_name="Должность")
-
-
-class RegistrationRequest(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    company = models.ForeignKey('Company', on_delete=models.CASCADE, related_name='registration_requests')
-
-    def __str__(self):
-        return f"{self.first_name} {self.last_name} - {self.company.name}"

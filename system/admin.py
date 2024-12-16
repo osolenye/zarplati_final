@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Company, CustomUser, WorkerProfile
+from .models import Company, CustomUser, WorkerProfile, RegistrationRequest
+
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
@@ -17,3 +18,10 @@ class WorkerProfileAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'last_name', 'salary', 'phone_number', 'position', 'user')  # Какие поля отображать
     search_fields = ('first_name', 'last_name', 'phone_number')  # Поля для поиска
     list_filter = ('position',)  # Фильтры по должности
+
+
+@admin.register(RegistrationRequest)
+class RegistrationRequestAdmin(admin.ModelAdmin):
+    list_display = ('first_name', 'last_name', 'company')
+    search_fields = ('first_name', 'last_name', 'company__name')
+    list_filter = ('company',)

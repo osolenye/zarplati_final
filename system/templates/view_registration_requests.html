@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Запросы на регистрацию</h2>
+    <table>
+        <tr>
+            <th>ФИО</th>
+            <th>Компания</th>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.first_name }} {{ request.last_name }}</td>
+            <td>{{ request.company.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
