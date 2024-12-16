@@ -9,7 +9,7 @@
         <nav>
             <ul>
                 {% if user.is_authenticated %}
-                    {% if user.is_manager %}
+                    {% if user.is_staff %}
                         <!-- Для админа -->
                         <li><a href="{% url 'register_worker' %}">Зарегистрировать работника</a></li>
                         <li><a href="{% url 'view_registration_requests' %}">Запросы на регистрацию</a></li>
@@ -27,11 +27,18 @@
             </ul>
         </nav>
     </header>
-    <h2>Подать запрос на регистрацию</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить</button>
-    </form>
+    <h2>Запросы на регистрацию</h2>
+    <table>
+        <tr>
+            <th>ФИО</th>
+            <th>Компания</th>
+        </tr>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.first_name }} {{ request.last_name }}</td>
+            <td>{{ request.company.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>
