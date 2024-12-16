@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
 </head>
 <body>
 <header>
@@ -15,7 +16,7 @@
                         <li><a href="{% url 'view_registration_requests' %}">Запросы на регистрацию</a></li>
                         <li><a href="{% url 'company_workers' %}">Работники компании</a></li>
                         <li><a href="{% url 'view_payments' %}">Выплаты</a></li>
-                   
+
                     {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Войти</a></li>
@@ -23,18 +24,11 @@
             </ul>
         </nav>
     </header>
-    <h2>Запросы на регистрацию</h2>
-    <table>
-        <tr>
-            <th>ФИО</th>
-            <th>Компания</th>
-        </tr>
-        {% for request in requests %}
-        <tr>
-            <td>{{ request.first_name }} {{ request.last_name }}</td>
-            <td>{{ request.company.name }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Зарегистрировать работника</button>
+    </form>
 </body>
 </html>
