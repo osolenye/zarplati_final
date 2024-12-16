@@ -130,12 +130,3 @@ def general_info(request):
     }
 
     return render(request, 'general_info.html', context)
-
-
-def home(request):
-    # Если пользователь авторизован
-    if request.user.is_authenticated:
-        return redirect('general_info')  # Перенаправляем на general_info.html
-    else:
-        # Если не авторизован, показываем выбор действий (например, регистрация компании/менеджера)
-        return render(request, 'home.html')
