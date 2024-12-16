@@ -27,8 +27,8 @@ def register_manager(request):
 
 @login_required
 def register_worker(request):
-    # if not request.user.is_manager:
-    #     return redirect('home')  # Только менеджер может регистрировать работников
+    if not request.user.is_manager:
+        return redirect('home')  # Только менеджер может регистрировать работников
 
     if request.method == "POST":
         user_form = WorkerUserForm(request.POST)
