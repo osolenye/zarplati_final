@@ -1,9 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Document</title>
+    <title>Title</title>
 </head>
 <body>
 <header>
@@ -16,7 +15,11 @@
                         <li><a href="{% url 'view_registration_requests' %}">Запросы на регистрацию</a></li>
                         <li><a href="{% url 'company_workers' %}">Работники компании</a></li>
                         <li><a href="{% url 'view_payments' %}">Выплаты</a></li>
-
+                    {% else %}
+                        <!-- Для работника (вставьте нужные ссылки) -->
+                        <li><a href="#">Мой профиль</a></li>
+                        <li><a href="#">Моя зарплата</a></li>
+                        <li><a href="#">История выплат</a></li>
                     {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Войти</a></li>
@@ -24,11 +27,11 @@
             </ul>
         </nav>
     </header>
+    <h2>Подать запрос на регистрацию</h2>
     <form method="post">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <button type="submit">Зарегистрировать работника</button>
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
     </form>
 </body>
 </html>

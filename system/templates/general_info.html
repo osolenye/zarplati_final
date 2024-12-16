@@ -6,6 +6,23 @@
     <title>Общая информация</title>
 </head>
 <body>
+<header>
+        <nav>
+            <ul>
+                {% if user.is_authenticated %}
+                    {% if user.is_manager %}
+                        <!-- Для админа -->
+                        <li><a href="{% url 'register_worker' %}">Зарегистрировать работника</a></li>
+                        <li><a href="{% url 'view_registration_requests' %}">Запросы на регистрацию</a></li>
+                        <li><a href="{% url 'company_workers' %}">Работники компании</a></li>
+                        <li><a href="{% url 'view_payments' %}">Выплаты</a></li>
+                    {% endif %}
+                {% else %}
+                    <li><a href="{% url 'login' %}">Войти</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
     <h1>Общая информация о компании</h1>
 
     <h2>Информация о компании</h2>

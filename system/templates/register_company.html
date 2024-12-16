@@ -16,11 +16,7 @@
                         <li><a href="{% url 'view_registration_requests' %}">Запросы на регистрацию</a></li>
                         <li><a href="{% url 'company_workers' %}">Работники компании</a></li>
                         <li><a href="{% url 'view_payments' %}">Выплаты</a></li>
-                    {% else %}
-                        <!-- Для работника (вставьте нужные ссылки) -->
-                        <li><a href="#">Мой профиль</a></li>
-                        <li><a href="#">Моя зарплата</a></li>
-                        <li><a href="#">История выплат</a></li>
+
                     {% endif %}
                 {% else %}
                     <li><a href="{% url 'login' %}">Войти</a></li>
