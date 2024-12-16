@@ -14,4 +14,7 @@ urlpatterns = [
 
     path('registration/request/', views.create_registration_request, name='create_registration_request'),
     path('registration/requests/', views.view_registration_requests, name='view_registration_requests'),
+    path('company/workers/', views.company_workers, name='company_workers'),
+    path('payments/', views.view_payments, name='view_payments'),
+
 ]

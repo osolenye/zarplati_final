@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.timezone import now
+
 
 class Company(models.Model):
     name = models.CharField(max_length=255, verbose_name="Название компании")
@@ -29,3 +31,18 @@ class RegistrationRequest(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.company.name}"
+
+
+class Payment(models.Model):
+    date = models.DateField(default=now)  # Дата выдачи
+    worker = models.ForeignKey('WorkerProfile', on_delete=models.CASCADE, related_name='payments')  # Ссылка на работника
+    amount = models.DecimalField(max_digits=10, decimal_places=2)  # Сумма выплаты
+
+    def save(self, *args, **kwargs):
+        # Заполняем сумму зарплатой из профиля работника
+        if not self.amount:
+            self.amount = self.worker.salary
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.worker.first_name} {self.worker.last_name} - {self.amount} ({self.date})"

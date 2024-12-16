@@ -96,12 +96,3 @@ def company_workers(request):
         return redirect('company_workers')  # Перезагружаем страницу с актуальными данными
 
     return render(request, 'company_workers.html', {'workers': workers})
-
-
-@login_required
-def view_payments(request):
-    # if not request.user.is_manager:
-    #     return redirect('home')  # Только менеджер может просматривать выплаты
-
-    payments = Payment.objects.filter(worker__user__company=request.user.company)
-    return render(request, 'view_payments.html', {'payments': payments})
